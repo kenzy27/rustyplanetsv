@@ -77,7 +77,7 @@ export const site: MissionContent = {
     { src: 'assets/screenshots/visual-002.jpeg', srcset: 'assets/screenshots/visual-002-480.jpeg 480w, assets/screenshots/visual-002-960.jpeg 960w, assets/screenshots/visual-002.jpeg 1600w', alt: 'A green computer terminal inside the outpost, with a prompt to access the Orbit control terminal.', width: 1600, height: 900 },
     { src: 'assets/screenshots/visual-003.jpeg', srcset: 'assets/screenshots/visual-003-480.jpeg 480w, assets/screenshots/visual-003-960.jpeg 960w, assets/screenshots/visual-003.jpeg 1600w', alt: 'An astronaut framed by the window of a dark outpost room.', width: 1600, height: 900 },
     { src: 'assets/screenshots/visual-004.jpeg', srcset: 'assets/screenshots/visual-004-480.jpeg 480w, assets/screenshots/visual-004-960.jpeg 960w, assets/screenshots/visual-004.jpeg 1600w', alt: 'Green system diagnostics screen showing a grid and a packet counter.', width: 1600, height: 900 },
-    { src: 'assets/backgrounds/main-menu.jpeg', alt: 'The game title and menu in a red-lit outpost overlooking Mars.', width: 1600, height: 900 },
+    { src: 'assets/backgrounds/main-menu.jpeg', alt: 'The game title and menu in a red-lit outpost overlooking Mars.', width: 1600, height: 900, caption: 'MAIN MENU ARCHIVE' },
   ],
   crew: [{ name: 'Kenzy' }, { name: 'Malak' }, { name: 'Shaza' }, { name: 'Salman' }, { name: 'Moaz' }],
   teamName: 'WASP-12B',
