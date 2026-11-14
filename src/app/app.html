@@ -19,12 +19,6 @@
         }
       </div>
     </div>
-    <figure class="briefing-image">
-      <div class="briefing-photo">
-        <img [ngSrc]="site.environment.src" [alt]="site.environment.alt" fill loading="lazy">
-      </div>
-      <figcaption class="frame-label meta"><span>Observation window</span><span>Mars Research Outpost 07</span></figcaption>
-    </figure>
   </section>
 
   <section class="chapter survival wrap" id="survival" aria-labelledby="survival-title">
@@ -101,7 +95,7 @@
       <h2 id="final-title">The distance between<br> <em>survival and discovery.</em></h2>
       <p class="meta signal-lost">Signal lost</p>
       @if (site.playUrl) {
-        <a class="button button-filled final-play" [href]="site.playUrl">Play the game <span aria-hidden="true">↗</span></a>
+        <a class="button button-filled final-play" [href]="site.playUrl">Download game <span aria-hidden="true">↗</span></a>
       }
       <nav class="final-nav meta" aria-label="Final transmission navigation">
         <a href="#top">Back to top ↑</a>

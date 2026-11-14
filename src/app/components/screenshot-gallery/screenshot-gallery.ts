@@ -20,8 +20,11 @@ export class ScreenshotGallery {
     return image.caption ?? `Visual record ${String(index + 1).padStart(3, '0')}`;
   }
 
-  protected open(index: number, trigger: HTMLButtonElement): void {
-    this.activeIndex.set(index);
+  protected recordNumber(value: number): string {
+    return String(value).padStart(2, '0');
+  }
+
+  protected open(trigger: HTMLButtonElement): void {
     this.opener = trigger;
     this.dialog().nativeElement.showModal();
     this.isOpen.set(true);
@@ -55,14 +58,21 @@ export class ScreenshotGallery {
     this.touchStart = touch ? { x: touch.clientX, y: touch.clientY } : null;
   }
 
+  protected cancelSwipe(): void {
+    this.touchStart = null;
+  }
+
   protected endSwipe(event: TouchEvent): void {
     const start = this.touchStart;
     const end = event.changedTouches[0];
-    this.touchStart = null;
-    if (!start || !end) return;
+    this.cancelSwipe();
+    if (!start || !end || this.screenshots.length < 2) return;
 
     const dx = end.clientX - start.x;
     const dy = end.clientY - start.y;
-    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) this.move(dx < 0 ? 1 : -1);
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+      event.preventDefault();
+      this.move(dx < 0 ? 1 : -1);
+    }
   }
 }

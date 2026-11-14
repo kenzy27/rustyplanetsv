@@ -5,22 +5,35 @@
       <h2 id="archive-title">The mission <em>archive.</em></h2>
     </div>
     @if (screenshots.length > 0) {
-      <p class="meta section-aside">{{ screenshots.length }} gameplay records // Unreal Engine 5</p>
+      <p class="meta section-aside">{{ screenshots.length }} visual records // Unreal Engine 5</p>
     }
   </div>
-  @if (screenshots.length > 0) {
-    <div class="archive-grid" [class.archive-grid-single]="screenshots.length === 1">
-      @for (image of screenshots; track image.src; let index = $index) {
-        <button #trigger class="archive-record" type="button" (click)="open(index, trigger)"
-          [attr.aria-label]="'Open ' + caption(image, index)">
-          <span class="archive-photo">
-            <img [src]="image.src" [attr.srcset]="image.srcset ?? null"
-              [attr.sizes]="index === 0 ? '(max-width: 700px) 90vw, (max-width: 1620px) 89vw, 1440px' : '(max-width: 700px) 45vw, (max-width: 1620px) 29vw, 463px'"
-              [width]="image.width" [height]="image.height" [alt]="image.alt" loading="lazy" decoding="async">
-          </span>
-          <span class="archive-label meta">{{ caption(image, index) }} <b aria-hidden="true">↗</b></span>
-        </button>
-      }
+  @if (screenshots[activeIndex()]; as image) {
+    <div class="archive-viewer" role="group" aria-roledescription="carousel" aria-label="Visual records"
+      (keydown.arrowleft)="onKey($event, -1)" (keydown.arrowright)="onKey($event, 1)">
+      <button #trigger class="archive-record" type="button" aria-haspopup="dialog"
+        [attr.aria-label]="'Open ' + caption(image, activeIndex()) + ' fullscreen'"
+        (click)="open(trigger)" (touchstart)="startSwipe($event)" (touchend)="endSwipe($event)"
+        (touchcancel)="cancelSwipe()">
+        @for (record of [image]; track record.src) {
+          <img class="archive-photo" [src]="record.src" [attr.srcset]="record.srcset ?? null"
+            sizes="(max-width: 910px) 89vw, 880px" [width]="record.width" [height]="record.height"
+            [alt]="record.alt" loading="lazy" decoding="async" draggable="false">
+        }
+      </button>
+
+      <div class="archive-controls">
+        @if (screenshots.length > 1) {
+          <button class="archive-arrow" type="button" aria-label="Previous visual record" (click)="move(-1)">←</button>
+        }
+        <p class="archive-label meta" aria-live="polite" aria-atomic="true">
+          <span>{{ caption(image, activeIndex()) }}</span>
+          <span class="archive-counter">{{ recordNumber(activeIndex() + 1) }} / {{ recordNumber(screenshots.length) }}</span>
+        </p>
+        @if (screenshots.length > 1) {
+          <button class="archive-arrow" type="button" aria-label="Next visual record" (click)="move(1)">→</button>
+        }
+      </div>
     </div>
   } @else {
     <p class="empty-record">Gameplay screenshots are currently unavailable.</p>
@@ -34,7 +47,7 @@
           <h3 id="lightbox-title" class="meta">Mission archive</h3>
           <button class="lightbox-control" type="button" autofocus aria-label="Close screenshot" (click)="close()">×</button>
         </div>
-        <div class="lightbox-image" (touchstart)="startSwipe($event)" (touchend)="endSwipe($event)">
+        <div class="lightbox-image" (touchstart)="startSwipe($event)" (touchend)="endSwipe($event)" (touchcancel)="cancelSwipe()">
           @if (isOpen()) {
             <img [src]="image.src" [width]="image.width" [height]="image.height" [alt]="image.alt">
           }

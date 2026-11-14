@@ -28,7 +28,7 @@ Edit `src/app/data/site-content.ts` for artwork paths, gameplay records, the tea
 
 | Folder in `public/assets/` | Contents |
 | --- | --- |
-| `backgrounds/` | `main-menu.jpeg` for the hero at all widths and `outpost.jpeg` for the mission briefing, teaser poster, and final transmission |
+| `backgrounds/` | `main-menu.jpeg` for the hero at all widths and `outpost.jpeg` for the teaser poster and final transmission |
 | `screenshots/` | `visual-001.jpeg` through `visual-004.jpeg`, copied from the supplied game captures |
 | `fonts/` | Self-hosted IM Fell English SC, IBM Plex Mono, and their licenses |
 | `video/` | Supplied `teaser.mp4` and a location for optional WebVTT captions |
