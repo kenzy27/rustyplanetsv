@@ -52,7 +52,7 @@
   <section class="chapter crew wrap" id="crew" aria-labelledby="crew-title">
     <div class="section-heading section-heading-split">
       <div>
-        <p class="eyebrow"><span>05</span> Development crew // Personnel records</p>
+        <p class="eyebrow"><span>05</span> Development crew // {{ site.teamName }}</p>
         <h2 id="crew-title">The people <em>behind<br class="crew-break"> the mission.</em></h2>
       </div>
       <p class="section-aside">{{ site.crewStory }}</p>
@@ -68,6 +68,7 @@
           <h3>{{ member.name }}</h3>
           @if (member.role) { <p class="crew-role meta">{{ member.role }}</p> }
           @if (member.bio) { <p>{{ member.bio }}</p> }
+          @if (!member.role && !member.bio) { <p class="crew-pending meta">Profile details pending</p> }
         </article>
       }
     </div>
@@ -94,6 +95,7 @@
   </section>
 
   <section class="final-transmission" aria-labelledby="final-title">
+    <img class="final-background" [ngSrc]="site.environment.src" alt="" fill loading="lazy">
     <div class="wrap final-inner">
       <p class="eyebrow"><span class="signal-dot" aria-hidden="true"></span> End of transmission</p>
       <h2 id="final-title">The distance between<br> <em>survival and discovery.</em></h2>

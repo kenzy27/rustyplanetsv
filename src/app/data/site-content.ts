@@ -27,10 +27,10 @@ interface MissionContent {
   survival: { icon: string; title: string; description: string }[];
   screenshots: ArchiveImage[];
   crew: CrewMember[];
+  teamName: string;
   crewStory: string;
   sources: { organization: string; title: string; description: string; url: string }[];
   playUrl?: string;
-  font?: { family: string; stylesheet: string };
 }
 
 export const navigation = [
@@ -58,7 +58,7 @@ export const site: MissionContent = {
     height: 900,
   },
   teaser: {
-    source: null,
+    source: { kind: 'file', src: 'assets/video/teaser.mp4' },
     poster: environment,
   },
   briefing: [
@@ -77,8 +77,9 @@ export const site: MissionContent = {
     { src: 'assets/screenshots/visual-003.jpeg', srcset: 'assets/screenshots/visual-003-480.jpeg 480w, assets/screenshots/visual-003-960.jpeg 960w, assets/screenshots/visual-003.jpeg 1600w', alt: 'An astronaut framed by the window of a dark outpost room.', width: 1600, height: 900 },
     { src: 'assets/screenshots/visual-004.jpeg', srcset: 'assets/screenshots/visual-004-480.jpeg 480w, assets/screenshots/visual-004-960.jpeg 960w, assets/screenshots/visual-004.jpeg 1600w', alt: 'Green system diagnostics screen showing a grid and a packet counter.', width: 1600, height: 900 },
   ],
-  crew: [{ name: 'Kenzy' }, { name: 'Malak' }, { name: 'Shaza' }, { name: 'Salman' }],
-  crewStory: 'We’re building an interactive Mars survival game for NASA Space Apps. We wanted to put players inside the problems that make Mars exploration so difficult and use game development and storytelling to make those problems tangible.',
+  crew: [{ name: 'Kenzy' }, { name: 'Malak' }, { name: 'Shaza' }, { name: 'Salman' }, { name: 'Moaz' }],
+  teamName: 'WASP-12B',
+  crewStory: 'Our five-person team built The Rusty Planet for NASA Space Apps. We worked together on planetary research, game design, development, assets, testing, and the final presentation.',
   sources: [
     { organization: 'NASA', title: 'Mars 2020 raw imagery', description: 'Raw images from the Perseverance rover on Mars.', url: 'https://mars.nasa.gov/mars2020/multimedia/raw-images/' },
     { organization: 'USGS', title: 'Astrogeology Mars maps', description: 'Interactive maps for exploring Martian terrain and geology.', url: 'https://astrogeology-usgs.hub.arcgis.com/pages/interactive-maps-mars' },

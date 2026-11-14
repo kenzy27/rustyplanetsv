@@ -11,8 +11,7 @@
     <div class="transmission-media">
       @if (source?.kind === 'file' && !playbackFailed()) {
         <video controls playsinline preload="none" [poster]="teaser.poster.src"
-          aria-label="The Rusty Planet teaser" (error)="playbackFailed.set(true)">
-          <source [src]="source.src" (error)="playbackFailed.set(true)">
+          [src]="source.src" aria-label="The Rusty Planet teaser" (error)="playbackFailed.set(true)">
           @if (source.captions) {
             <track kind="captions" [src]="source.captions" srclang="en" label="English" default>
           }

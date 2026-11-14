@@ -1,8 +1,8 @@
 @font-face {
-  font-family: Cormorant Garamond;
-  src: url('./cormorant-garamond.woff2') format('woff2');
+  font-family: 'IM Fell English SC';
+  src: url('./im-fell-english-sc.woff2') format('woff2');
   font-style: normal;
-  font-weight: 500 700;
+  font-weight: 400;
   font-display: swap;
 }
 

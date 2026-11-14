@@ -27,7 +27,6 @@
   }
 
   <dialog #lightbox class="lightbox" aria-labelledby="lightbox-title" (close)="restoreFocus()"
-    (click)="$event.target === lightbox && close()"
     (keydown.arrowleft)="onKey($event, -1)" (keydown.arrowright)="onKey($event, 1)">
     @if (screenshots[activeIndex()]; as image) {
       <div class="lightbox-inner">

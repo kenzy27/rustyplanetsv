@@ -6,20 +6,15 @@
     </div>
 
     <figure class="hero-image">
-      <picture>
-        <source media="(max-width: 700px)" [srcset]="site.environment.src">
-        <img [src]="site.hero.src" alt="" [width]="site.hero.width" [height]="site.hero.height" fetchpriority="high" decoding="async">
-      </picture>
+      <img [src]="site.hero.src" alt="" [width]="site.hero.width" [height]="site.hero.height" fetchpriority="high" decoding="async">
       <div class="hero-haze" aria-hidden="true"></div>
-      <h1 id="site-title" class="hero-title">The Rusty Planet<span>Survival Guide</span></h1>
-      <div class="hero-mobile-actions">
-        <a class="button button-filled" href="#transmission"><span class="play-glyph" aria-hidden="true"></span> Watch teaser</a>
-      </div>
+      <h1 id="site-title" class="hero-title">{{ site.title }}</h1>
     </figure>
 
     <div class="hero-footer meta">
       <span><b>01</b> <i>/</i> Main menu archive</span>
-      <a href="#transmission">Access transmission <span aria-hidden="true">↓</span></a>
+      <a class="hero-desktop-action" href="#transmission">Access transmission <span aria-hidden="true">↓</span></a>
+      <a class="button button-filled hero-mobile-action" href="#transmission"><span class="play-glyph" aria-hidden="true"></span> Watch teaser</a>
     </div>
   </div>
 </section>

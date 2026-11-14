@@ -28,24 +28,14 @@ Edit `src/app/data/site-content.ts` for artwork paths, gameplay records, the tea
 
 | Folder in `public/assets/` | Contents |
 | --- | --- |
-| `backgrounds/` | `main-menu.jpeg` for the desktop hero and `outpost.jpeg` for its mobile crop, the mission briefing, and the temporary teaser still |
+| `backgrounds/` | `main-menu.jpeg` for the hero at all widths and `outpost.jpeg` for the mission briefing, teaser poster, and final transmission |
 | `screenshots/` | `visual-001.jpeg` through `visual-004.jpeg`, copied from the supplied game captures |
-| `fonts/` | Self-hosted fallback fonts and licenses. Add the game font here when available |
-| `video/` | Create this folder for a local teaser, dedicated poster, and WebVTT captions |
+| `fonts/` | Self-hosted IM Fell English SC, IBM Plex Mono, and their licenses |
+| `video/` | Supplied `teaser.mp4` and a location for optional WebVTT captions |
 | `team/` | Create this folder if crew portraits are supplied |
 
 For a local teaser, set `teaser.source` to `{ kind: 'file', src: 'assets/video/teaser.mp4', captions: 'assets/video/teaser.en.vtt' }`. The optional captions field accepts an English WebVTT track. For hosted playback, set `{ kind: 'youtube', videoId: '…' }` or `{ kind: 'vimeo', videoId: '…' }` to the provider's video ID. Update `teaser.poster` when a dedicated still is available.
 
-For the game font, add the font file and a `game-font.css` stylesheet under `public/assets/fonts/`, then set `font: { family: 'Rusty Planet', stylesheet: 'assets/fonts/game-font.css' }` in the content file. Use this declaration in the stylesheet and adjust the filename, format, and weight for the supplied font.
-
-```css
-@font-face {
-  font-family: 'Rusty Planet';
-  src: url('./game-font.woff2') format('woff2');
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-}
-```
+The project development report identifies IM Fell English SC as the game’s typeface. Its webfont is loaded by `public/assets/fonts/site-fonts.css`.
 
 The section templates are in `src/app/` and `src/app/components/`. Shared layout, color, and motion rules are in `src/styles.css`.

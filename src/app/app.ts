@@ -1,5 +1,5 @@
 import { DOCUMENT, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Navigation } from './components/navigation/navigation';
 import { Hero } from './components/hero/hero';
 import { Teaser } from './components/teaser/teaser';
@@ -18,12 +18,9 @@ export class App {
 
   constructor() {
     const document = inject(DOCUMENT);
-    if (site.font) {
-      const stylesheet = document.createElement('link');
-      stylesheet.rel = 'stylesheet';
-      stylesheet.href = site.font.stylesheet;
-      document.head.append(stylesheet);
-      document.documentElement.style.setProperty('--game-font', `"${site.font.family}"`);
-    }
+    afterNextRender(() => {
+      const anchor = document.location.hash.slice(1);
+      document.getElementById(anchor)?.scrollIntoView({ behavior: 'instant' });
+    });
   }
 }
