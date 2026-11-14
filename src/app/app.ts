@@ -1,14 +1,13 @@
 import { DOCUMENT, NgOptimizedImage } from '@angular/common';
 import { afterNextRender, ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Navigation } from './components/navigation/navigation';
-import { Hero } from './components/hero/hero';
 import { Teaser } from './components/teaser/teaser';
 import { ScreenshotGallery } from './components/screenshot-gallery/screenshot-gallery';
 import { site } from './data/site-content';
 
 @Component({
   selector: 'app-root',
-  imports: [Navigation, Hero, Teaser, ScreenshotGallery, NgOptimizedImage],
+  imports: [Navigation, Teaser, ScreenshotGallery, NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.html',
 })

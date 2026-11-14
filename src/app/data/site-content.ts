@@ -21,7 +21,6 @@ export type TeaserSource =
 interface MissionContent {
   title: string;
   environment: ArchiveImage;
-  hero: ArchiveImage;
   teaser: { source: TeaserSource | null; poster: ArchiveImage };
   briefing: string[];
   survival: { icon: string; title: string; description: string }[];
@@ -51,12 +50,6 @@ const environment: ArchiveImage = {
 export const site: MissionContent = {
   title: 'The Rusty Planet: Survival Guide',
   environment,
-  hero: {
-    src: 'assets/backgrounds/main-menu.jpeg',
-    alt: 'Main menu artwork for The Rusty Planet inside a red-lit Martian research station.',
-    width: 1600,
-    height: 900,
-  },
   teaser: {
     source: { kind: 'file', src: 'assets/video/teaser.mp4' },
     poster: environment,
