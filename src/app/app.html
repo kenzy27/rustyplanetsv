@@ -1,0 +1,122 @@
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div id="top" tabindex="-1"></div>
+<app-navigation />
+
+<main id="main-content" tabindex="-1">
+  <app-hero />
+  <app-teaser />
+
+  <section class="chapter briefing wrap" id="mission" aria-labelledby="mission-title">
+    <div class="briefing-grid">
+      <div class="section-heading">
+        <p class="eyebrow"><span>02</span> Mission briefing // Sol 001</p>
+        <h2 id="mission-title">What is The Rusty Planet<span class="heading-break"></span><em>Survival Guide?</em></h2>
+      </div>
+      <div class="briefing-copy">
+        <p class="mission-quote">You were trained to reach Mars.<br><em>You were not trained to be alone.</em></p>
+        @for (paragraph of site.briefing; track paragraph) {
+          <p>{{ paragraph }}</p>
+        }
+      </div>
+    </div>
+    <figure class="briefing-image">
+      <div class="briefing-photo">
+        <img [ngSrc]="site.environment.src" [alt]="site.environment.alt" fill loading="lazy">
+      </div>
+      <figcaption class="frame-label meta"><span>Observation window</span><span>Mars Research Outpost 07</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="chapter survival wrap" id="survival" aria-labelledby="survival-title">
+    <div class="section-heading">
+      <p class="eyebrow"><span>03</span> Mission objectives // Active</p>
+      <h2 id="survival-title">Survival is <em>not guaranteed.</em></h2>
+    </div>
+    <ol class="survival-list">
+      @for (record of site.survival; track record.title; let index = $index) {
+        <li>
+          <div class="objective-top meta"><span>0{{ index + 1 }}</span><span class="objective-icon" aria-hidden="true">{{ record.icon }}</span></div>
+          <h3>{{ record.title }}</h3>
+          <p>{{ record.description }}</p>
+        </li>
+      }
+    </ol>
+    <div class="sol-banner">
+      <p class="meta"><span class="signal-dot" aria-hidden="true"></span> Day one complete.</p>
+      <p>Will you survive day two?</p>
+    </div>
+  </section>
+
+  <app-screenshot-gallery />
+
+  <section class="chapter crew wrap" id="crew" aria-labelledby="crew-title">
+    <div class="section-heading section-heading-split">
+      <div>
+        <p class="eyebrow"><span>05</span> Development crew // Personnel records</p>
+        <h2 id="crew-title">The people <em>behind<br class="crew-break"> the mission.</em></h2>
+      </div>
+      <p class="section-aside">{{ site.crewStory }}</p>
+    </div>
+    <div class="crew-grid">
+      @for (member of site.crew; track member.name; let index = $index) {
+        <article class="crew-record">
+          <div class="crew-id meta"><span>Personnel file</span><span>{{ (index + 1).toString().padStart(2, '0') }}</span></div>
+          @if (member.portrait; as portrait) {
+            <img class="crew-portrait" [ngSrc]="portrait.src" [width]="portrait.width" [height]="portrait.height"
+              [alt]="portrait.alt" loading="lazy">
+          }
+          <h3>{{ member.name }}</h3>
+          @if (member.role) { <p class="crew-role meta">{{ member.role }}</p> }
+          @if (member.bio) { <p>{{ member.bio }}</p> }
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="chapter sources wrap" id="sources" aria-labelledby="sources-title">
+    <div class="section-heading">
+      <p class="eyebrow"><span>06</span> Scientific references // Source archive</p>
+      <h2 id="sources-title">Built on <em>real worlds.</em></h2>
+    </div>
+    <p class="sources-intro">References the team considered while developing the game.</p>
+    <ul class="source-list">
+      @for (source of site.sources; track source.url) {
+        <li>
+          <a [href]="source.url">
+            <span class="source-org meta">{{ source.organization }}</span>
+            <span class="source-title">{{ source.title }}</span>
+            <span class="source-description">{{ source.description }}</span>
+            <span class="source-arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section class="final-transmission" aria-labelledby="final-title">
+    <div class="wrap final-inner">
+      <p class="eyebrow"><span class="signal-dot" aria-hidden="true"></span> End of transmission</p>
+      <h2 id="final-title">The distance between<br> <em>survival and discovery.</em></h2>
+      <p class="meta signal-lost">Signal lost</p>
+      @if (site.playUrl) {
+        <a class="button button-filled final-play" [href]="site.playUrl">Play the game <span aria-hidden="true">↗</span></a>
+      }
+      <nav class="final-nav meta" aria-label="Final transmission navigation">
+        <a href="#top">Back to top ↑</a>
+        <a href="#transmission">Watch teaser</a>
+        <a href="#archives">View archives</a>
+        <a href="#crew">Meet the crew</a>
+      </nav>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="footer-title">{{ site.title }}</p>
+      <p class="footer-crew meta">{{ crewNames }}</p>
+    </div>
+    <p class="footer-credit">An independent NASA Space Apps hackathon entry.<br>Game artwork and screenshots by the development team.</p>
+  </div>
+</footer>

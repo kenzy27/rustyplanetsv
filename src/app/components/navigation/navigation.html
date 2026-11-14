@@ -1,0 +1,24 @@
+<header class="topbar" (keydown.escape)="escape(menuToggle, $event)">
+  <div class="topbar-inner">
+    <a class="brand" href="#top" (click)="close()" aria-label="Outpost 07 — back to top">
+      <img class="brand-mark" src="assets/mission-mark.svg" width="34" height="38" alt="">
+      <span>OUTPOST<span class="brand-number"> 07</span><small>MARS RESEARCH STATION</small></span>
+    </a>
+
+    <button #menuToggle class="menu-toggle" type="button" aria-controls="mission-navigation"
+      [attr.aria-expanded]="expanded()" (click)="toggle()">
+      <span aria-hidden="true">{{ expanded() ? '×' : '☰' }}</span>
+      {{ expanded() ? 'Close' : 'Menu' }}
+    </button>
+
+    <nav id="mission-navigation" class="main-nav" [class.is-open]="expanded()" aria-label="Mission navigation">
+      @for (link of links; track link.href) {
+        <a [href]="link.href" (click)="close()">{{ link.label }}</a>
+      }
+    </nav>
+
+    <a class="button header-action" href="#transmission" (click)="close()">
+      <span class="play-glyph" aria-hidden="true"></span> Watch teaser
+    </a>
+  </div>
+</header>

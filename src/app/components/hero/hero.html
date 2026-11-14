@@ -1,0 +1,25 @@
+<section class="hero" aria-labelledby="site-title">
+  <div class="hero-inner wrap">
+    <div class="hero-header meta">
+      <span><span class="signal-dot" aria-hidden="true"></span> Mission archive <i>//</i> Access granted</span>
+      <span class="hero-coordinates">Jezero Crater <i>//</i> 18.47° N, 77.43° E</span>
+    </div>
+
+    <figure class="hero-image">
+      <picture>
+        <source media="(max-width: 700px)" [srcset]="site.environment.src">
+        <img [src]="site.hero.src" alt="" [width]="site.hero.width" [height]="site.hero.height" fetchpriority="high" decoding="async">
+      </picture>
+      <div class="hero-haze" aria-hidden="true"></div>
+      <h1 id="site-title" class="hero-title">The Rusty Planet<span>Survival Guide</span></h1>
+      <div class="hero-mobile-actions">
+        <a class="button button-filled" href="#transmission"><span class="play-glyph" aria-hidden="true"></span> Watch teaser</a>
+      </div>
+    </figure>
+
+    <div class="hero-footer meta">
+      <span><b>01</b> <i>/</i> Main menu archive</span>
+      <a href="#transmission">Access transmission <span aria-hidden="true">↓</span></a>
+    </div>
+  </div>
+</section>

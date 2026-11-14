@@ -1,0 +1,55 @@
+<section class="chapter archive wrap" id="archives" aria-labelledby="archive-title">
+  <div class="section-heading section-heading-split">
+    <div>
+      <p class="eyebrow"><span>04</span> Recovered visual records</p>
+      <h2 id="archive-title">The mission <em>archive.</em></h2>
+    </div>
+    @if (screenshots.length > 0) {
+      <p class="meta section-aside">{{ screenshots.length }} gameplay records // Unreal Engine 5</p>
+    }
+  </div>
+  @if (screenshots.length > 0) {
+    <div class="archive-grid" [class.archive-grid-single]="screenshots.length === 1">
+      @for (image of screenshots; track image.src; let index = $index) {
+        <button #trigger class="archive-record" type="button" (click)="open(index, trigger)"
+          [attr.aria-label]="'Open ' + caption(image, index)">
+          <span class="archive-photo">
+            <img [src]="image.src" [attr.srcset]="image.srcset ?? null"
+              [attr.sizes]="index === 0 ? '(max-width: 700px) 90vw, (max-width: 1620px) 89vw, 1440px' : '(max-width: 700px) 45vw, (max-width: 1620px) 29vw, 463px'"
+              [width]="image.width" [height]="image.height" [alt]="image.alt" loading="lazy" decoding="async">
+          </span>
+          <span class="archive-label meta">{{ caption(image, index) }} <b aria-hidden="true">↗</b></span>
+        </button>
+      }
+    </div>
+  } @else {
+    <p class="empty-record">Gameplay screenshots are currently unavailable.</p>
+  }
+
+  <dialog #lightbox class="lightbox" aria-labelledby="lightbox-title" (close)="restoreFocus()"
+    (click)="$event.target === lightbox && close()"
+    (keydown.arrowleft)="onKey($event, -1)" (keydown.arrowright)="onKey($event, 1)">
+    @if (screenshots[activeIndex()]; as image) {
+      <div class="lightbox-inner">
+        <div class="lightbox-header">
+          <h3 id="lightbox-title" class="meta">Mission archive</h3>
+          <button class="lightbox-control" type="button" autofocus aria-label="Close screenshot" (click)="close()">×</button>
+        </div>
+        <div class="lightbox-image" (touchstart)="startSwipe($event)" (touchend)="endSwipe($event)">
+          @if (isOpen()) {
+            <img [src]="image.src" [width]="image.width" [height]="image.height" [alt]="image.alt">
+          }
+        </div>
+        <div class="lightbox-footer">
+          @if (screenshots.length > 1) {
+            <button class="lightbox-control" type="button" aria-label="Previous screenshot" (click)="move(-1)">←</button>
+          }
+          <p class="meta" aria-live="polite">{{ caption(image, activeIndex()) }} / {{ activeIndex() + 1 }} of {{ screenshots.length }}</p>
+          @if (screenshots.length > 1) {
+            <button class="lightbox-control" type="button" aria-label="Next screenshot" (click)="move(1)">→</button>
+          }
+        </div>
+      </div>
+    }
+  </dialog>
+</section>

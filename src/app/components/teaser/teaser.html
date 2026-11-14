@@ -1,0 +1,44 @@
+<section class="chapter transmission wrap" id="transmission" aria-labelledby="transmission-title">
+  <div class="section-heading">
+    <p class="eyebrow"><span>01</span> Archive file // Video record</p>
+    <h2 id="transmission-title">Incoming <em>transmission.</em></h2>
+  </div>
+
+  @let source = teaser.source;
+  @let externalPlayer = embedUrl();
+  <figure class="transmission-frame">
+    <div class="frame-label meta"><span><i class="signal-dot" aria-hidden="true"></i> Video channel 01</span><span>Outpost 07 / Mars</span></div>
+    <div class="transmission-media">
+      @if (source?.kind === 'file' && !playbackFailed()) {
+        <video controls playsinline preload="none" [poster]="teaser.poster.src"
+          aria-label="The Rusty Planet teaser" (error)="playbackFailed.set(true)">
+          <source [src]="source.src" (error)="playbackFailed.set(true)">
+          @if (source.captions) {
+            <track kind="captions" [src]="source.captions" srclang="en" label="English" default>
+          }
+          Your browser does not support video playback. <a [href]="source.src">Open the teaser file</a>.
+        </video>
+      } @else if (externalPlayer && embedOpen()) {
+        <iframe [src]="externalPlayer" title="The Rusty Planet teaser" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      } @else {
+        <img [ngSrc]="teaser.poster.src" alt="" fill loading="lazy">
+        <div class="transmission-message">
+          @if (externalPlayer) {
+            <button class="button button-filled" type="button" (click)="embedOpen.set(true)">
+              <span class="play-glyph" aria-hidden="true"></span> Load teaser player
+            </button>
+          } @else {
+            <span class="transmission-crosshair" aria-hidden="true">⌖</span>
+            <p class="meta" [attr.role]="playbackFailed() ? 'status' : null">
+              {{ playbackFailed() ? 'Teaser failed to load' : 'Teaser unavailable' }}
+            </p>
+            <a href="#archives">Explore the gameplay archive <span aria-hidden="true">↗</span></a>
+          }
+        </div>
+      }
+    </div>
+    <figcaption class="frame-label transmission-caption">
+      <span>“Some transmissions were never meant to reach Earth.”</span>
+    </figcaption>
+  </figure>
+</section>

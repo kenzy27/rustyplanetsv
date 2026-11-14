@@ -1,0 +1,6 @@
+/node_modules
+/.angular
+/.pnpm-store
+/dist
+/out-tsc
+*.log
